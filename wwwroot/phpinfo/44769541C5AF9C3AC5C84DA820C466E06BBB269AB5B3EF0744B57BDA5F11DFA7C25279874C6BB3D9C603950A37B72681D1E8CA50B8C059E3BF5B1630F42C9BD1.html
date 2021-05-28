@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>PHP information | ij.zapto.org</title>
+</head>
+
+<body>
+    <div style="position: fixed; bottom: 35px; right: 15px; z-index: 999;">
+        <a href="#" style="color:white;background-color:#7fff00;font-size:15pt">Go to top</a></div>
+    <script>
+        addEventListener("keyup", function(event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                window.location.href = "#";
+            }
+        });
+    </script>
+
+    <p>
+        <?php phpinfo(); ?>
+    </p>
+</body>
+
+</html>

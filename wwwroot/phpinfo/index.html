@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>PHP開發人員認證</title>
+    <meta charset="utf-8">
+    <script src="https://ij.zapto.org/sha256.js"></script>
+    <script>
+        var trytime=0;
+        function decrypt(str, pwd) {
+            if (str == null || str.length < 8) {
+                alert('A salt value could not be extracted from the encrypted message because its length is too short. The message cannot be decrypted.');
+                return;
+            }
+            if (pwd == null || pwd.length <= 0) {
+                alert('Please enter a password with which to decrypt the message.');
+                return;
+            }
+            var prand = '';
+            for (var i = 0; i < pwd.length; i++) {
+                prand += pwd.charCodeAt(i).toString();
+            }
+            var sPos = Math.floor(prand.length / 5);
+            var mult = parseInt(prand.charAt(sPos) + prand.charAt(sPos * 2) + prand.charAt(sPos * 3) + prand.charAt(sPos * 4) + prand.charAt(sPos * 5));
+            var incr = Math.round(pwd.length / 2);
+            var modu = Math.pow(2, 31) - 1;
+            var salt = parseInt(str.substring(str.length - 8, str.length), 16);
+            str = str.substring(0, str.length - 8);
+            prand += salt;
+            while (prand.length > 10) {
+                prand = (parseInt(prand.substring(0, 10)) + parseInt(prand.substring(10, prand.length))).toString();
+            }
+            prand = (mult * prand + incr) % modu;
+            var enc_chr = '';
+            var enc_str = '';
+            for (var i = 0; i < str.length; i += 2) {
+                enc_chr = parseInt(parseInt(str.substring(i, i + 2), 16) ^ Math.floor((prand / modu) * 255));
+                enc_str += String.fromCharCode(enc_chr);
+                prand = (mult * prand + incr) % modu;
+            }
+            return enc_str;
+        }
+
+        function protection(password) {
+            encURL = '274782ececa2ec12c7ca4cb644c1b1feff7be3697b5ce70f72b939d2020b326614532d36a7c2e5dfee78180d819f00deb58f8c9543185a192401c52e3d9fd4d4c9e796e7e98b6039aee8387f53d23c174c5fffb1214d050593c5ff9c24f27170c2726deffd901769133849fcc77b3d2f825965ecdf912198b165f6d968889a898b479b419b589092679903ff2d068f02aa898653d49b3823f6191aed8606e0a61e58007de5de';
+            if (password != '' && password != null) {
+                decURL = decrypt(encURL, password);
+                if (sha256(decURL) == "646def130c0ddc3d5202f929609778bdd6b17cdbd8da40b1d615a00699828977") {
+                    location.href = decURL;
+                } else {
+                    alert('密碼錯誤');
+                    trytimes++;
+                }
+            }
+        }
+
+        function getInputValue() {
+            var inputVal = document.getElementById("myInput").value;
+            var yes = confirm('您是否使用隱私視窗？');
+
+            if (yes) {
+                protection(inputVal);
+            } else {
+                alert('請使用隱私視窗');
+            }
+
+        }
+        //show and hide password
+        function ShowPwd(a) {
+            var x = document.getElementById("myInput");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+
+        function HidePwd(a) {
+            var x = document.getElementById("myInput");
+            if (x.type === "text") {
+                x.type = "password";
+            } else {
+                x.type = "text";
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+    <h1>PHP開發人員認證</h1>
+
+    密碼：<input id="myInput" type="password" value="password please" onFocus="this.value=''" autofocus> Show/Hide
+    <input type="radio" name="appear" onclick="ShowPwd(0)"><input type="radio" name="appear" onclick="HidePwd(0)" checked>
+    <button id="myBtn" onclick="getInputValue();">登入系統</button>
+
+    <script>
+        var inputText = document.getElementById("myInput");
+        inputText.addEventListener("keyup", function(event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                document.getElementById("myBtn").click();
+            }
+        });
+    </script>
+    <hr>
+    <h2>※注意事項※</h2>
+    <p>請務必開啟JavaScript，否則無法登入系統，若密碼輸入錯誤將被導向到不可預期的網頁，並請使用隱私視窗。</p>
+</body>
+
+</html>

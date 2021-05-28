@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<title>人員認證系統</title>
+<meta charset="utf-8">
+<script>
+
+function decrypt(str, pwd) {
+if(str == null || str.length < 8) {
+alert('A salt value could not be extracted from the encrypted message because its length is too short. The message cannot be decrypted.');
+return;
+}
+if(pwd == null || pwd.length <= 0) {
+alert('Please enter a password with which to decrypt the message.');
+return;
+}
+var prand ='';
+for(var i=0; i<pwd.length; i++) {
+prand += pwd.charCodeAt(i).toString();
+}
+var sPos = Math.floor(prand.length / 5);
+var mult = parseInt(prand.charAt(sPos) + prand.charAt(sPos*2) + prand.charAt(sPos*3) + prand.charAt(sPos*4) + prand.charAt(sPos*5));
+var incr = Math.round(pwd.length / 2);
+var modu = Math.pow(2, 31) - 1;
+var salt = parseInt(str.substring(str.length - 8, str.length), 16);
+str = str.substring(0, str.length - 8);
+prand += salt;
+while(prand.length > 10) {
+prand = (parseInt(prand.substring(0, 10)) + parseInt(prand.substring(10, prand.length))).toString();
+}
+prand = (mult * prand + incr) % modu;
+var enc_chr = '';
+var enc_str = '';
+for(var i=0; i<str.length; i+=2) {
+enc_chr = parseInt(parseInt(str.substring(i, i+2), 16) ^ Math.floor((prand / modu) * 255));
+enc_str += String.fromCharCode(enc_chr);
+prand = (mult * prand + incr) % modu;
+}
+return enc_str;
+}
+
+function protection01() {
+encURL = 'e3b3e2ee0fb5936963f939b19b91c3c400b4bc87547f78a8e5c93b055116c9';
+password=prompt('請輸入密碼：','');
+if (password != '' && password != null) {
+decURL=decrypt(encURL, password);
+location.href= decURL;
+}
+}
+
+</script>
+<script>
+function protection03() {
+encURL = '00ac6cb52c83b945ab12e65b700d7e25d73f906dd9df66bd1856f282ad5eed1df6f6cb2b2cf59e7d4d03fa43ae';
+password=prompt('請輸入密碼：','');
+if (password != '' && password != null) {
+decURL=decrypt(encURL, password);
+location.href= decURL;
+}
+}
+
+</script>
+<script>
+function protection04() {
+var password = document.getElementById("password").value;
+encURL = 'e33f7f3caa25177e327f6cbd13b33bf7693d636fa3a80d15c6e8efd52eda55d2615c6f185367ca2959015a014785ab1ed795905c7ee6e81eb3a7fe3f8888fd1b34e36b57c7d4a3f74fb8de5acd7c4b8ec73f48383d1ad6619a9031310dbdf4100c2b4adc3388b4b86d12565232931cfecb4f9ac92b06e09c62715bca84d06be2bd967bc372cc58c19857dec21d8ba0096f9bc32ed9e57be12041fc96f9d4cb1cb78d04eeba07';
+if (password != '' && password != null) {
+decURL=decrypt(encURL, password);
+location.href= decURL;
+}
+}
+
+</script>
+
+<script>
+function protection02(password) {
+encURL = '00ac6cb52c83b945ab12e65b700d7e25d73f906dd9df66bd1856f282ad5eed1df6f6cb2b2cf59e7d4d0339f81d';
+if (password != '' && password != null) {
+decURL=decrypt(encURL, password);
+var str = "https://ij.zapto.org/secure/";
+	if (decURL.indexOf( "https://ij.zapto.org/secure/" ) == 0) {
+	alert("wrong");
+	} else {
+	location.href= decURL;
+	}
+}
+}
+</script>
+
+<script>
+function protection(version,password) {
+if (version == 1) {
+encURL="00ac6cb52c83b945ab12e65b700d7e25d73f906dd9df66bd1856f282ad5eed1df6f6cb2b2cf59e7d4d0339f81d";
+}
+if (version == 2) {
+	encURL='00ac6cb52c83b945ab12e65b700d7e25d73f906dd9df66bd1856f282ad5eed1df6f6cb2b2cf59e7d4d03fa43ae';
+}
+if (password != '' && password != null) {
+decURL=decrypt(encURL, password);
+location.href= decURL;
+}
+}
+</script>
+<script>
+function varified() {
+var name = document.getElementById("name").value;
+if (name == "impartial just") {
+	getInputValue(1)
+} if (name == "others") {
+	getInputValue(2)
+} else {
+	alert("查無此人")
+}
+}
+</script>
+</head>
+<body>
+<h1>人員認證系統</h1>
+<img src="https://ij.zapto.org/secure/user-avatar-with-check-mark.png" width="120px" height="120px" alt="Admin">
+<p>點選您的身分：</p>
+<button onclick="protection01()">學校</button>
+<button onclick="protection03()">音樂報告</button><br>
+<h2>開發人員：</h2>
+<form>
+<label>
+	帳號：<input type="text" id="name">
+	密碼：<input type="password" id="password">Show/Hide
+    <input type="radio" name="appear" onclick="ShowPwd(0)"><input type="radio" name="appear"  onclick="HidePwd(0)">
+</label>
+</form>
+    <button type="button" onclick="getInputValue();">登入系統</button>
+<form>LDAP:
+<label>
+	密碼：<input type="password" id="password1">
+</label>
+</form>
+    <button type="button" onclick="protection04()">登入系統</button>
+
+   
+    <script>
+        function getInputValue(version){
+            var inputVal = document.getElementById("password").value;
+            protection02(inputVal);
+        }
+    </script>
+    <script>
+	//show and hide password
+        function ShowPwd(a) {
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+		function HidePwd(a) {
+		var x = document.getElementById("password");
+            if (x.type === "text") {
+                x.type = "password";
+            } else {
+                x.type = "text";
+            }
+        }
+		
+    </script>
+<hr>
+若輸入錯誤，會被導向到不可預期的網頁!!!!!!!!!!!!
+<footer>
+<div>Icons made by <a href="https://www.freepik.com" target="_blank" title="www.freepik.com">Freepik</a> from <a href="https://www.flaticon.com/" target="_blank" title="Flaticon">www.flaticon.com</a></div>
+</footer>
+</body>
+</html>

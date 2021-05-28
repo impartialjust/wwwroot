@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://ij.zapto.org/</loc>
+  <lastmod>2021-05-20T01:53:57+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://ij.zapto.org/~pro/</loc>
+  <lastmod>2021-05-20T13:00:39+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ij.zapto.org/thanks/</loc>
+  <lastmod>2021-05-20T13:00:39+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ij.zapto.org/licenses/</loc>
+  <lastmod>2021-05-20T13:00:39+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ij.zapto.org/~pro/Home.html</loc>
+  <lastmod>2021-05-20T13:00:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://ij.zapto.org/~pro/About.html</loc>
+  <lastmod>2021-05-20T13:00:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://ij.zapto.org/~pro/Special-Thanks.html</loc>
+  <lastmod>2021-05-20T13:00:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://ij.zapto.org/~pro/Futures.html</loc>
+  <lastmod>2021-05-20T13:00:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://ij.zapto.org/~pro/Contact.html</loc>
+  <lastmod>2021-05-20T13:00:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://ij.zapto.org/~pro/project.html</loc>
+  <lastmod>2021-05-20T13:00:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://ij.zapto.org/~pro/Terms-of-use.html</loc>
+  <lastmod>2021-05-20T13:00:39+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://ij.zapto.org/licenses/cc-by-sa4.0/</loc>
+  <lastmod>2021-05-20T13:00:39+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+
+
+</urlset>

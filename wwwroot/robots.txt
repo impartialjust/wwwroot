@@ -1,0 +1,7 @@
+User-agent: *
+Allow:/
+Disallow: /friend/
+Disallow: /school/
+Disallow: /aspnet_client/
+Disallow: /App_Data/
+Sitemap: https://ij.zapto.org/sitemap.xml
